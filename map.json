@@ -55,7 +55,7 @@
                 {
                  "name":"exitSceneUrl",
                  "type":"string",
-                 "value":"floor1.json"
+                 "value":"https:\/\/chromedino.com\/"
                 }],
          "type":"tilelayer",
          "visible":true,
