@@ -73,7 +73,7 @@
                 {
                  "name":"openWebsite",
                  "type":"string",
-                 "value":"https:\/\/www.foodcheri.com\/"
+                 "value":"https:\/\/play.workadventu.re\/_\/global\/chloecarton.github.io\/workadventu-map\/templates\/pages\/redirect-deliveroo.html"
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -145,7 +145,7 @@
                 {
                  "name":"openWebsite",
                  "type":"string",
-                 "value":"https:\/\/deliveroo.fr\/fr\/restaurants\/lyon\/vaise"
+                 "value":"https:\/\/play.workadventu.re\/_\/global\/chloecarton.github.io\/workadventu-map\/templates\/pages\/redirect-deliveroo.html"
                 }],
          "type":"tilelayer",
          "visible":true,
