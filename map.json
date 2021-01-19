@@ -127,7 +127,7 @@
                 {
                  "name":"openWebsite",
                  "type":"string",
-                 "value":"https:\/\/eternalbox.dev\/jukebox_go.html"
+                 "value":"https:\/\/eternalbox.dev\/jukebox_index.html"
                 }],
          "type":"tilelayer",
          "visible":true,
