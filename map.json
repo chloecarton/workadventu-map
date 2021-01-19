@@ -53,7 +53,7 @@
          "opacity":1,
          "properties":[
                 {
-                 "name":"exitSceneUrl",
+                 "name":"openWebsite",
                  "type":"string",
                  "value":"https:\/\/chromedino.com\/"
                 }],
