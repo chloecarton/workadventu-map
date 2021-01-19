@@ -89,9 +89,9 @@
          "opacity":1,
          "properties":[
                 {
-                 "name":"jitsyRoom",
+                 "name":"jitsiRoom",
                  "type":"string",
-                 "value":"lpl-meeting-room"
+                 "value":"lpl-meeting"
                 }],
          "type":"tilelayer",
          "visible":true,

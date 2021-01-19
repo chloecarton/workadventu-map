@@ -161,7 +161,7 @@
          "opacity":1,
          "properties":[
                 {
-                 "name":"jitsyRoom",
+                 "name":"jitsiRoom",
                  "type":"string",
                  "value":"lpl-lunch-time"
                 }],
