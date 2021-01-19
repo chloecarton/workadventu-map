@@ -994,7 +994,7 @@
         {
          "columns":16,
          "firstgid":321,
-         "image":"..\/..\/Downloads\/Modern tiles_Free\/Interiors_free\/32x32\/Interiors_free_32x32.png",
+         "image":"tilesets\/Interiors_free_32x32.png",
          "imageheight":1792,
          "imagewidth":512,
          "margin":0,
@@ -1008,7 +1008,7 @@
         {
          "columns":12,
          "firstgid":1217,
-         "image":"..\/..\/Downloads\/Modern tiles_Free\/Interiors_free\/32x32\/Tileset_32x32_16.png",
+         "image":"tilesets\/Tileset_32x32_16.png",
          "imageheight":448,
          "imagewidth":384,
          "margin":0,
