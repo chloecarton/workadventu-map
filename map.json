@@ -55,7 +55,7 @@
                 {
                  "name":"exitUrl",
                  "type":"string",
-                 "value":"floorUnderground.json#bar_underground"
+                 "value":"maps\/floorUnderground.json#bar_underground"
                 }],
          "type":"tilelayer",
          "visible":true,
