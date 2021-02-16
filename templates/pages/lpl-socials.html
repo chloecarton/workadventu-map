@@ -181,7 +181,8 @@
                 .then(html => {
                     let tiktokRegExp = new RegExp('<script id="__NEXT_DATA__" type="application\\/json" crossorigin="anonymous">(.*)<\\/script><script crossorigin="anonymous"');
                     let json = JSON.parse(html).contents.match(tiktokRegExp);
-                    console.log(JSON.parse(html).contents.match(tiktokRegExp));
+                    console.log(tiktokRegExp);
+                    console.log(JSON.parse(html).contents);
                     if(json !== null){
                         let data = JSON.parse(json[1]);
 
