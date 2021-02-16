@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #eaf8fc;
+            }
+            main {
+                height: 100vh;
+                width: 100vw;
+                text-align: center;
+            }
+            h1 {
+                font-size: 5em;
+                font-weight: 700;
+                line-height: 1.5;
+                margin-top: 25%;
+            }
+            h3 {
+                font-size: 1em;
+            }
+            a {
+                background-color: #f4da85;
+                color: black;
+                font-size: 2em;
+                border-radius: 8px;
+                text-decoration: none;
+                display: inline-block;
+                white-space: nowrap;
+                padding: 11px 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div>
+                <h1>Socials</h1>
+            </div>
+            <div>
+                <h3>@lepermislibre</h3>
+                <p>
+                    <iframe id="insta-1" width="320" height="540" src="" frameborder="0"></iframe>
+                    &nbsp;
+                    <iframe id="insta-2" width="320" height="540" src="" frameborder="0"></iframe>
+                    &nbsp;
+                    <iframe id="insta-3" width="320" height="540" src="" frameborder="0"></iframe>
+                </p>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const xhr = new XMLHttpRequest();
+    const url ='https://www.instagram.com/lepermislibre/';
+    const instagramRegExp = /<script type="text\/javascript">window\._sharedData = (.*);<\/script>/;
+    let config = {
+        headers: {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36",
+            "Origin": "https://www.instagram.com"
+        }
+    }
+
+    async function fetchInstagramPhotos (accountUrl) {
+        const response = await axios.get(accountUrl, null, config);
+        console.log(response);
+        const json = JSON.parse(response.data.match(instagramRegExp)[1]);
+        if('ProfilePage' in json.entry_data && json.entry_data.ProfilePage.length > 0) {
+            const edges = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges.splice(0, 8);
+            const photos = edges.map(({node}) => {
+                return {
+                    url: `https://www.instagram.com/p/${node.shortcode}/embed`,
+                    thumbnailUrl: node.thumbnail_src,
+                    displayUrl: node.display_url,
+                    caption: node.edge_media_to_caption.edges[0].node.text
+                }
+            });
+            return photos
+        }
+        return json;
+    }
+
+    function saveInstagramPhotos (photos) {
+        try {
+            let i = 1;
+            localStorage.setItem('insta-refresh', Date.now());
+
+            photos.forEach(function(photo) {
+                localStorage.setItem('insta-' + i , photo.url);
+                i++;
+            })
+
+        } catch (e){
+            console.error('Saving Instagram photos failed', e)
+        }
+    }
+
+    async function asyncCallInstagram() {
+        try {
+            const refresh = localStorage.getItem('insta-refresh')
+            const millis = Math.floor(Date.now() - refresh / 1000);
+
+            if( localStorage.getItem('insta-1') === null || ( refresh !== null && millis > 86400 )){
+                const photos = await fetchInstagramPhotos(url);
+
+                if( photos.length > 0 ){
+                    saveInstagramPhotos(photos);
+                }
+
+            }
+
+            document.getElementById('insta-1').src = localStorage.getItem('insta-1');
+            document.getElementById('insta-2').src = localStorage.getItem('insta-2');
+            document.getElementById('insta-3').src = localStorage.getItem('insta-3');
+        } catch (e) {
+            console.error('Fetching Instagram photos failed', e)
+        }
+    }
+
+    asyncCallInstagram();
+
+</script>
