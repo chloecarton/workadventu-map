@@ -235,7 +235,7 @@
                 {
                  "name":"openWebsite",
                  "type":"string",
-                 "value":"file:\/\/\/Users\/chloe\/Sites\/workadventu-map\/templates\/pages\/lpl-socials.html"
+                 "value":"https:\/\/htmlpreview.github.io\/?https:\/\/github.com\/chloecarton\/workadventu-map\/blob\/master\/templates\/pages\/lpl-socials.html"
                 }],
          "type":"tilelayer",
          "visible":true,
