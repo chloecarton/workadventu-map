@@ -111,7 +111,7 @@
 
             callAsync(accountUrl, 'instagram')
             .then(html => {
-                let instagramRegExp = new RegExp('<script type="text\/javascript">window\._sharedData = (.*);<\/script>');
+                let instagramRegExp = new RegExp('type="text\/javascript">window\._sharedData = (.*);<\/script>');
                 const data = JSON.parse(html.match(instagramRegExp)[1]);
 
                 if('ProfilePage' in data.entry_data && typeof data.entry_data.ProfilePage !== "undefined" && data.entry_data.ProfilePage.length > 0) {
@@ -179,7 +179,7 @@
         try {
             callAsync(accountUrl, 'tiktok')
                 .then(html => {
-                    let tiktokRegExp = new RegExp("<script id=\"__NEXT_DATA__\" type=\"application\\/json\" crossorigin=\"anonymous\">(.*)<\\/script><script crossorigin=\"anonymous\"");
+                    let tiktokRegExp = new RegExp('id="__NEXT_DATA__" type="application\\/json" crossorigin="anonymous">(.*)<\\/script><script crossorigin="anonymous"');
                     let json = JSON.parse(html).contents.match(tiktokRegExp);
                     console.log(tiktokRegExp);
                     console.log(JSON.parse(html).contents);
