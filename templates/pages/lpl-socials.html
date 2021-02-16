@@ -13,7 +13,7 @@
                 font-size: 5em;
                 font-weight: 700;
                 line-height: 1.5;
-                margin-top: 25%;
+                margin-top: 5%;
             }
             h3 {
                 font-size: 1em;
@@ -63,9 +63,9 @@
             <div>
                 <h3>Instagram</h3>
                 <div id="instagram" class="posts">
-                    <iframe id="insta-1" class="post-item" width="320" height="540" src="javascript();" frameborder="0"></iframe>
-                    <iframe id="insta-2" class="post-item" width="320" height="540" src="javascript();" frameborder="0"></iframe>
-                    <iframe id="insta-3" class="post-item" width="320" height="540" src="javascript();" frameborder="0"></iframe>
+                    <iframe id="insta-1" class="post-item" width="320" height="540" frameborder="0"></iframe>
+                    <iframe id="insta-2" class="post-item" width="320" height="540" frameborder="0"></iframe>
+                    <iframe id="insta-3" class="post-item" width="320" height="540" frameborder="0"></iframe>
                 </div>
             </div>
         </main>
@@ -77,20 +77,12 @@
 <script>
     const urlInsta = 'https://www.instagram.com/lepermislibre/';
     const urlTikTok = `https://api.allorigins.win/get?url=${encodeURIComponent('https://www.tiktok.com/@lepermislibre')}`;
-    const instagramRegExp = /<script type="text\/javascript">window\._sharedData = (.*);<\/script>/;
-    let config = {
-        headers: {
-            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36",
-            "origin": "https://www.instagram.com"
-        },
-        method: "GET"
-    };
 
     function setUpConfig(type) {
         return {
             headers: {
                 "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36",
-                "origin": "https://www."+ type +".com"
+                "origin": "https://www." + type + ".com"
             },
             method: "GET"
         };
@@ -120,7 +112,7 @@
             callAsync(accountUrl, 'instagram')
             .then(html => {
                 console.log(JSON.parse(html));
-                let instagramRegExp = /<script type="text\/javascript">window\._sharedData = (.*);<\/script>/;
+                let instagramRegExp = new RegExp('<script type="text\/javascript">window\._sharedData = (.*);<\/script>');
                 const data = JSON.parse(response.data.match(instagramRegExp)[1]);
 
                 if('ProfilePage' in data.entry_data && typeof data.entry_data.ProfilePage !== "undefined" && data.entry_data.ProfilePage.length > 0) {
@@ -190,7 +182,7 @@
         try {
             callAsync(accountUrl, 'tiktok')
                 .then(html => {
-                    let tiktokRegExp = /<script id="__NEXT_DATA__" type="application\/json" crossorigin="anonymous">(.*)<\/script><script crossorigin="anonymous"/;
+                    let tiktokRegExp = new RegExp("<script id=\"__NEXT_DATA__\" type=\"application\\/json\" crossorigin=\"anonymous\">(.*)<\\/script><script crossorigin=\"anonymous\"");
                     let json = JSON.parse(html).contents.match(tiktokRegExp);
                     let data = JSON.parse(json[1]);
 
@@ -240,7 +232,7 @@
         }
     }
 
-    updateInstagram();
+    //updateInstagram();
     updateTikTok();
 
 
