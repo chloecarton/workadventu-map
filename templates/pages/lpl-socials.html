@@ -179,16 +179,20 @@
         try {
             callAsync(accountUrl, 'tiktok')
                 .then(html => {
-                    let tiktokRegExp = new RegExp('<script id=\"__NEXT_DATA__\" type=\"application\\/json\" crossorigin=\"anonymous\">(.*)<\\/script><script crossorigin=\"anonymous\"');
+                    let tiktokRegExp = new RegExp('<script id="__NEXT_DATA__" type="application\/json" crossorigin="anonymous">(.*)<\/script><script crossorigin="anonymous"');
                     let json = JSON.parse(html).contents.match(tiktokRegExp);
-                    let data = JSON.parse(json[1]);
+                    console.log(JSON.parse(html));
+                    if(json.length > 1){
+                        let data = JSON.parse(json[1]);
 
-                    if('pageProps' in data.props && typeof data.props.pageProps !== "undefined" && data.props.pageProps.items.length > 0) {
-                        const posts = data.props.pageProps.items.splice(0, 3);
-                        buildTiktokPosts(posts);
-                        return posts
+                        if('pageProps' in data.props && typeof data.props.pageProps !== "undefined" && data.props.pageProps.items.length > 0) {
+                            const posts = data.props.pageProps.items.splice(0, 3);
+                            buildTiktokPosts(posts);
+                            return posts
+                        }
+                        return data;
                     }
-                    return data;
+
                 })
                 .catch(function (err) {
                     throw 'fetch tiktok posts failed : ' + err;
