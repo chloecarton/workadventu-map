@@ -99,7 +99,7 @@
             if(response.redirected){
                 throw 'request for ' + type + ' posts exceeded';
             }
-
+            console.log(response);
             throw "request for " + type + " posts failed : " + response.status;
         }
 
